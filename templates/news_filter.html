@@ -29,7 +29,7 @@ Products
            {% for a in posts %}
             <tr>
                 <td align="left">{{ a.author }}</td>
-                <td align="left">{{ a.title|censor }}</td>
+                <td align="left"><a href ="{%url 'post_details' a.id %}">{{ a.title|censor }}</a></td>
                 <td align="left">{{ a.dateCreation|date:'d M Y'}}</td>
                 <td align="left">{{ a.text|truncatewords:20|censor }}</td>
            </tr>

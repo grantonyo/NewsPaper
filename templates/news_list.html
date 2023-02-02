@@ -2,7 +2,7 @@
 {% load custom_filters %}
 
 {% block title %}
-Products
+Список новостей
 {% endblock title %}
 
 {% block content %}
@@ -19,15 +19,21 @@ Products
                <td> <b>Заголовок</b> </td>
                <td> <b>Дата</b> </td>
                <td> <b>Превью</b> </td>
+               <td> <b>Категория</b> </td>
            </tr> <!-- Не забываем закрыть HTML-тег строки -->
 
            {% for a in posts %}
                    <tr>
                         <td align="left">{{ a.author }}</td>
                         <td align="left">{{ a.categoryType }}</td>
-                        <td align="left">{{ a.title|censor }}</td>
+                        <td align="left"><a href ="{%url 'post_details' a.id %}">{{ a.title|censor }}</a></td>
                         <td align="left">{{ a.dateCreation|date:'d M Y'}}</td>
                         <td align="left">{{ a.text|truncatewords:20|censor }}</td>
+                        <td align="center">
+                            {% for category in a.postCategory.all %}
+                                <a href="{% url 'category_list' category.id %}">{{ category }}</a>
+                            {% endfor %}
+                        </td>
                    </tr>
            {% endfor %}
 
