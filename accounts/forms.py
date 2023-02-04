@@ -26,7 +26,7 @@ class CustomSignupForm(SignupForm):
     def save(self, request):
         user = super().save(request)
 
-        subject = 'Добро пожаловать в наш интернет-магазин!'
+        subject = 'Добро пожаловать в наш новостной портал!'
         text = f'{user.username}, вы успешно зарегистрировались на сайте!'
         html = (
             f'<b>{user.username}</b>, вы успешно зарегистрировались на '
@@ -44,4 +44,5 @@ class CustomSignupForm(SignupForm):
         )
 
         return user
+
 

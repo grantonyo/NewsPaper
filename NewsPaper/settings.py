@@ -40,7 +40,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     "django.contrib.sites",
     "django.contrib.flatpages",
-    'news',
+    'news.apps.NewsConfig',
     'django_filters',
     'allauth',
     'allauth.account',
@@ -153,14 +153,15 @@ ACCOUNT_USERNAME_REQUIRED = False
 ACCOUNT_AUTHENTICATION_METHOD = 'email'
 ACCOUNT_EMAIL_VERIFICATION = 'mandatory'
 
-SITE_URL= 'http://127.0.0.1:8000'
+SITE_URL = 'http://127.0.0.1:8000'
 
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 #EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 EMAIL_HOST = 'smtp.yandex.ru'
 EMAIL_PORT = 465
 EMAIL_HOST_USER = "grantonyo@yandex.ru"
-EMAIL_HOST_PASSWORD = "dgkevaywhllrujnz"
+#EMAIL_HOST_PASSWORD = "zbdkfwoxhznxvydb"
+EMAIL_HOST_PASSWORD = "qbjxmxzxvrxegion"
 EMAIL_USE_TLS = False
 EMAIL_USE_SSL = True
 
@@ -168,9 +169,12 @@ DEFAULT_FROM_EMAIL = "grantonyo@yandex.ru"
 
 SERVER_EMAIL = "grantonyo@yandex.ru"
 MANAGERS = (
-    ('Anton_Manager', 'grantonyo@gmail.com'),
+    ('Antaka', 'antaka@km.ru'),
+    ('Anton Google', 'grantonyo@gmail.com')
 )
 
-ADMINS = (
-    ('Anton_Admin', 'grntonyo@yandex.ru'),
-)
+ACCOUNT_FORMS = {"signup": "accounts.forms.CustomSignupForm"}
+
+APSCHEDULER_DATETIME_FORMAT = 'N j, Y, f:s a'
+
+APSCHEDULER_RUN_NOW_TIMEOUT = 25
