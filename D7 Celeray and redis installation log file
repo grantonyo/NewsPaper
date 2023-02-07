@@ -1,0 +1,147 @@
+
+
+
+1. (venv) $ pip3 install celery
+
+
+(venv) grant@gk:~/gdev/django$ sudo add-apt-repository ppa:redislabs/redis
+You are about to add the following PPA:
+ ** NOTICE **
+
+Redis now has an official APT repository. We urge users to use the APT repository, as described here:
+https://redis.io/docs/getting-started/installation/install-redis-on-linux/
+
+This PPA is still maintained but bugfix releases of older versions cannot be distributed here.
+
+* * *
+
+Redis is an open source (BSD licensed), in-memory data structure store, used as a database, cache and message broker.
+
+It supports data structures such as strings, hashes, lists, sets, sorted sets with range queries, bitmaps, hyperloglogs, geospatial indexes with radius queries and streams.
+
+Redis has built-in replication, Lua scripting, LRU eviction, transactions and different levels of on-disk persistence, and provides high availability via Redis Sentinel and automatic partitioning with Redis Cluster.
+ More info: https://launchpad.net/~redislabs/+archive/ubuntu/redis
+Press Enter to continue or Ctrl+C to cancel
+
+gpg: directory '/root/.gnupg' created
+gpg: keybox '/root/.gnupg/pubring.kbx' created
+gpg: /root/.gnupg/trustdb.gpg: trustdb created
+gpg: keybox '/etc/apt/keyrings/60A0586666DE0BA4B481628ACC59E6B43FA6E3CA.keyring' created
+
+gpg: key CC59E6B43FA6E3CA: public key "Launchpad PPA for Redis Labs" imported
+gpg: Total number processed: 1
+gpg:               imported: 1
+(venv) grant@gk:~/gdev/django$ sudo apt-get update
+Ign:1 http://mirror.yandex.ru/linuxmint-packages vera InRelease
+Hit:2 http://mirror.yandex.ru/ubuntu jammy InRelease                           
+Hit:3 http://security.ubuntu.com/ubuntu jammy-security InRelease               
+Get:4 https://ppa.launchpadcontent.net/redislabs/redis/ubuntu jammy InRelease [18,0 kB]
+Hit:5 http://mirror.yandex.ru/ubuntu jammy-updates InRelease
+Hit:6 http://mirror.yandex.ru/ubuntu jammy-backports InRelease
+Hit:7 http://mirror.yandex.ru/linuxmint-packages vera Release                  
+Get:9 https://ppa.launchpadcontent.net/redislabs/redis/ubuntu jammy/main amd64 Packages [1 028 B]
+Get:10 https://ppa.launchpadcontent.net/redislabs/redis/ubuntu jammy/main Translation-en [584 B]
+Fetched 19,7 kB in 1s (21,8 kB/s)                            
+Reading package lists... Done
+(venv) grant@gk:~/gdev/django$ sudo apt-get install redis
+Reading package lists... Done
+Building dependency tree... Done
+Reading state information... Done
+The following additional packages will be installed:
+  redis-server redis-tools
+Suggested packages:
+  ruby-redis
+The following NEW packages will be installed:
+  redis redis-server redis-tools
+0 upgraded, 3 newly installed, 0 to remove and 74 not upgraded.
+Need to get 1 660 kB of archives.
+After this operation, 9 473 kB of additional disk space will be used.
+Do you want to continue? [Y/n] y
+Get:1 https://ppa.launchpadcontent.net/redislabs/redis/ubuntu jammy/main amd64 redis-tools amd64 6:7.0.8-1rl1~jammy1 [1 529 kB]
+Get:2 https://ppa.launchpadcontent.net/redislabs/redis/ubuntu jammy/main amd64 redis-server amd64 6:7.0.8-1rl1~jammy1 [89,5 kB]
+Get:3 https://ppa.launchpadcontent.net/redislabs/redis/ubuntu jammy/main amd64 redis all 6:7.0.8-1rl1~jammy1 [41,3 kB]
+Fetched 1 660 kB in 2s (1 024 kB/s)
+Selecting previously unselected package redis-tools.
+(Reading database ... 574694 files and directories currently installed.)
+Preparing to unpack .../redis-tools_6%3a7.0.8-1rl1~jammy1_amd64.deb ...
+Unpacking redis-tools (6:7.0.8-1rl1~jammy1) ...
+Selecting previously unselected package redis-server.
+Preparing to unpack .../redis-server_6%3a7.0.8-1rl1~jammy1_amd64.deb ...
+Unpacking redis-server (6:7.0.8-1rl1~jammy1) ...
+Selecting previously unselected package redis.
+Preparing to unpack .../redis_6%3a7.0.8-1rl1~jammy1_all.deb ...
+Unpacking redis (6:7.0.8-1rl1~jammy1) ...
+Setting up redis-tools (6:7.0.8-1rl1~jammy1) ...
+Setting up redis-server (6:7.0.8-1rl1~jammy1) ...
+Setting up redis (6:7.0.8-1rl1~jammy1) ...
+Processing triggers for man-db (2.10.2-1) ...
+(venv) grant@gk:~/gdev/django$ redis-cli ping
+PONG
+(venv) grant@gk:~/gdev/django$ redis-server
+6487:C 06 Feb 2023 23:05:10.986 # oO0OoO0OoO0Oo Redis is starting oO0OoO0OoO0Oo
+6487:C 06 Feb 2023 23:05:10.986 # Redis version=7.0.8, bits=64, commit=00000000, modified=0, pid=6487, just started
+6487:C 06 Feb 2023 23:05:10.986 # Warning: no config file specified, using the default config. In order to specify a config file use redis-server /path/to/redis.conf
+6487:M 06 Feb 2023 23:05:10.986 * Increased maximum number of open files to 10032 (it was originally set to 1024).
+6487:M 06 Feb 2023 23:05:10.986 * monotonic clock: POSIX clock_gettime
+6487:M 06 Feb 2023 23:05:10.987 # Warning: Could not create server TCP listening socket *:6379: bind: Address already in use
+6487:M 06 Feb 2023 23:05:10.987 # Failed listening on port 6379 (TCP), aborting.
+(venv) grant@gk:~/gdev/django$ redis-cli ping
+PONG
+(venv) grant@gk:~/gdev/django$ pip3 install redis
+Collecting redis
+  Downloading redis-4.4.2-py3-none-any.whl (237 kB)
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 237.8/237.8 KB 1.2 MB/s eta 0:00:00
+Collecting async-timeout>=4.0.2
+  Downloading async_timeout-4.0.2-py3-none-any.whl (5.8 kB)
+Installing collected packages: async-timeout, redis
+Successfully installed async-timeout-4.0.2 redis-4.4.2
+(venv) grant@gk:~/gdev/django$ pip3 install -U "celery[redis]"
+Requirement already satisfied: celery[redis] in ./venv/lib/python3.10/site-packages (5.2.7)
+Requirement already satisfied: kombu<6.0,>=5.2.3 in ./venv/lib/python3.10/site-packages (from celery[redis]) (5.2.4)
+Requirement already satisfied: billiard<4.0,>=3.6.4.0 in ./venv/lib/python3.10/site-packages (from celery[redis]) (3.6.4.0)
+Requirement already satisfied: click<9.0,>=8.0.3 in ./venv/lib/python3.10/site-packages (from celery[redis]) (8.1.3)
+Requirement already satisfied: click-plugins>=1.1.1 in ./venv/lib/python3.10/site-packages (from celery[redis]) (1.1.1)
+Requirement already satisfied: click-didyoumean>=0.0.3 in ./venv/lib/python3.10/site-packages (from celery[redis]) (0.3.0)
+Requirement already satisfied: click-repl>=0.2.0 in ./venv/lib/python3.10/site-packages (from celery[redis]) (0.2.0)
+Requirement already satisfied: pytz>=2021.3 in ./venv/lib/python3.10/site-packages (from celery[redis]) (2022.7.1)
+Requirement already satisfied: vine<6.0,>=5.0.0 in ./venv/lib/python3.10/site-packages (from celery[redis]) (5.0.0)
+Requirement already satisfied: redis!=4.0.0,!=4.0.1,>=3.4.1 in ./venv/lib/python3.10/site-packages (from celery[redis]) (4.4.2)
+Requirement already satisfied: prompt-toolkit in ./venv/lib/python3.10/site-packages (from click-repl>=0.2.0->celery[redis]) (3.0.36)
+Requirement already satisfied: six in ./venv/lib/python3.10/site-packages (from click-repl>=0.2.0->celery[redis]) (1.16.0)
+Requirement already satisfied: amqp<6.0.0,>=5.0.9 in ./venv/lib/python3.10/site-packages (from kombu<6.0,>=5.2.3->celery[redis]) (5.1.1)
+Requirement already satisfied: async-timeout>=4.0.2 in ./venv/lib/python3.10/site-packages (from redis!=4.0.0,!=4.0.1,>=3.4.1->celery[redis]) (4.0.2)
+Requirement already satisfied: wcwidth in ./venv/lib/python3.10/site-packages (from prompt-toolkit->click-repl>=0.2.0->celery[redis]) (0.2.6)
+(venv) grant@gk:~/gdev/django$ 
+
+
+(venv) grant@gk:~/gdev/django/models_tutor$ cd ../NewsPaper
+(venv) grant@gk:~/gdev/django/NewsPaper$ celery -A NewsPaper worker -l INFO
+ 
+ -------------- celery@gk v5.2.7 (dawn-chorus)
+--- ***** ----- 
+-- ******* ---- Linux-5.15.0-58-generic-x86_64-with-glibc2.35 2023-02-06 20:34:52
+- *** --- * --- 
+- ** ---------- [config]
+- ** ---------- .> app:         NewsPaper:0x7f89268b0490
+- ** ---------- .> transport:   redis://localhost:6379//
+- ** ---------- .> results:     redis://localhost:6379/
+- *** --- * --- .> concurrency: 8 (prefork)
+-- ******* ---- .> task events: OFF (enable -E to monitor tasks in this worker)
+--- ***** ----- 
+ -------------- [queues]
+                .> celery           exchange=celery(direct) key=celery
+                
+
+[tasks]
+
+
+[2023-02-06 20:34:52,391: INFO/MainProcess] Connected to redis://localhost:6379//
+[2023-02-06 20:34:52,394: INFO/MainProcess] mingle: searching for neighbors
+[2023-02-06 20:34:53,400: INFO/MainProcess] mingle: all alone
+[2023-02-06 20:34:53,408: WARNING/MainProcess] /home/grant/gdev/django/venv/lib/python3.10/site-packages/celery/fixups/django.py:203: UserWarning: Using settings.DEBUG leads to a memory
+            leak, never use this setting in production environments!
+  warnings.warn('''Using settings.DEBUG leads to a memory
+
+[2023-02-06 20:34:53,408: INFO/MainProcess] celery@gk ready.
+
+
